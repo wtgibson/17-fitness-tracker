@@ -26,10 +26,9 @@ module.exports = function (app) {
 
     // POST route
     app.post("/api/workouts", (req, res) => {
-        db.Workout.find({})
-            .populate("exercises")
-            .then(dbWorkout => {
-                res.json(dbWorkout);
+        db.Workout.create({ day: Date.now() })
+            .then(workout => {
+                res.json(workout);
             })
             .catch(err => {
                 res.json(err);
@@ -37,7 +36,7 @@ module.exports = function (app) {
     });
 
     // PUT route
-    app.put("/api/workouts/:ID", (req, res) => {
+    app.put("/api/workouts/:id", (req, res) => {
         db.Exercise.create(req.body)            
             .then((data) => db.Workout.findOneAndUpdate(
                 { _id: req.params.id },
