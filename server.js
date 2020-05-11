@@ -21,7 +21,7 @@ app.use(express.static("public"));
 require("./routes/html-routes.js")(app, path);
 require("./routes/api-routes.js")(app);
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhose/workout", { useNewUrlParser: true }).then(() => {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { useNewUrlParser: true }).then(() => {
 console.log("Connected to Database");
 }).catch((err) => {
     console.log("Not Connected to Database ERROR! ", err);
